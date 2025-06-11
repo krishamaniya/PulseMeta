@@ -1,0 +1,380 @@
+2025-05-03 17:04:04.822 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:04:04.852 [INFO]: db connected.
+2025-05-03 17:04:20.795 [ERROR]: NotFoundError: Trading account with id 212491363 not found. Request URL: https://mt-provisioning-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts/212491363
+    at HttpClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:123:24)
+    at HttpClient._handleError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:86:28)
+    at HttpClient.request (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:55:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MetatraderAccountApi.getAccount (D:\trade\node_modules\metaapi.cloud-sdk\dist\metaApi\metatraderAccountApi.js:45:23)
+    at async MTService.connect (D:\trade\services\mtService.js:20:23)
+    at async AccountService.getOrders (D:\trade\services\accountService.js:63:26)
+    at async Promise.all (index 2)
+    at async AccountService.getCompleteAccountData (D:\trade\services\accountService.js:89:48)
+    at async exports.getAccountData (D:\trade\controller\tradingview.controller.js:46:18)
+2025-05-03 17:04:20.797 [ERROR]: Error: Failed to connect to MT account: Trading account with id 212491363 not found. Request URL: https://mt-provisioning-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts/212491363
+    at MTService.connect (D:\trade\services\mtService.js:32:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AccountService.getOrders (D:\trade\services\accountService.js:63:26)
+    at async Promise.all (index 2)
+    at async AccountService.getCompleteAccountData (D:\trade\services\accountService.js:89:48)
+    at async exports.getAccountData (D:\trade\controller\tradingview.controller.js:46:18)
+2025-05-03 17:04:20.799 [ERROR]: Error: Failed to connect to MT account: Trading account with id 212491363 not found. Request URL: https://mt-provisioning-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts/212491363
+    at MTService.connect (D:\trade\services\mtService.js:32:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AccountService.getOrders (D:\trade\services\accountService.js:63:26)
+    at async Promise.all (index 2)
+    at async AccountService.getCompleteAccountData (D:\trade\services\accountService.js:89:48)
+    at async exports.getAccountData (D:\trade\controller\tradingview.controller.js:46:18)
+2025-05-03 17:04:20.810 [ERROR]: NotFoundError: Trading account with id 212491363 not found. Request URL: https://mt-provisioning-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts/212491363
+    at HttpClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:123:24)
+    at HttpClient._handleError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:86:28)
+    at HttpClient.request (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:55:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MetatraderAccountApi.getAccount (D:\trade\node_modules\metaapi.cloud-sdk\dist\metaApi\metatraderAccountApi.js:45:23)
+    at async MTService.connect (D:\trade\services\mtService.js:20:23)
+    at async AccountService.getPositions (D:\trade\services\accountService.js:36:26)
+    at async Promise.all (index 1)
+2025-05-03 17:04:20.814 [ERROR]: Error: Failed to connect to MT account: Trading account with id 212491363 not found. Request URL: https://mt-provisioning-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts/212491363
+    at MTService.connect (D:\trade\services\mtService.js:32:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AccountService.getPositions (D:\trade\services\accountService.js:36:26)
+    at async Promise.all (index 1)
+2025-05-03 17:04:20.821 [ERROR]: NotFoundError: Trading account with id 212491363 not found. Request URL: https://mt-provisioning-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts/212491363
+    at HttpClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:123:24)
+    at HttpClient._handleError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:86:28)
+    at HttpClient.request (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\httpClient.js:55:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MetatraderAccountApi.getAccount (D:\trade\node_modules\metaapi.cloud-sdk\dist\metaApi\metatraderAccountApi.js:45:23)
+    at async MTService.connect (D:\trade\services\mtService.js:20:23)
+    at async AccountService.getAccountInfo (D:\trade\services\accountService.js:12:26)
+    at async Promise.all (index 0)
+2025-05-03 17:04:20.824 [ERROR]: Error: Failed to connect to MT account: Trading account with id 212491363 not found. Request URL: https://mt-provisioning-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts/212491363
+    at MTService.connect (D:\trade\services\mtService.js:32:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AccountService.getAccountInfo (D:\trade\services\accountService.js:12:26)
+    at async Promise.all (index 0)
+2025-05-03 17:06:05.652 [INFO]: [2025-05-03T11:36:05.652Z] Connecting MetaApi websocket client to the MetaApi server via https://mt-client-api-v1.london-a.agiliumtrade.ai shared server.
+2025-05-03 17:06:05.652 [INFO]: [2025-05-03T11:36:05.652Z] Connecting MetaApi websocket client to the MetaApi server via https://mt-client-api-v1.london-b.agiliumtrade.ai shared server.
+2025-05-03 17:06:06.825 [INFO]: [2025-05-03T11:36:06.825Z] london:0: MetaApi websocket client connected to the MetaApi server
+2025-05-03 17:06:06.884 [INFO]: [2025-05-03T11:36:06.884Z] london:1: MetaApi websocket client connected to the MetaApi server
+2025-05-03 17:06:08.893 [INFO]: Connected to MT account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+2025-05-03 17:06:09.464 [INFO]: Connected to MT account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+2025-05-03 17:06:09.465 [INFO]: Connected to MT account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+2025-05-03 17:08:47.607 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:08:47.646 [INFO]: db connected.
+2025-05-03 17:10:20.693 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:10:20.730 [INFO]: db connected.
+2025-05-03 17:10:28.842 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:10:28.882 [INFO]: db connected.
+2025-05-03 17:10:34.857 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:10:34.892 [INFO]: db connected.
+2025-05-03 17:10:53.139 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:10:53.172 [INFO]: db connected.
+2025-05-03 17:10:57.908 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:10:57.945 [INFO]: db connected.
+2025-05-03 17:14:30.416 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:14:30.452 [INFO]: db connected.
+2025-05-03 17:21:48.175 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:21:48.218 [INFO]: db connected.
+2025-05-03 17:22:05.065 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:22:05.132 [INFO]: db connected.
+2025-05-03 17:22:17.484 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:22:17.521 [INFO]: db connected.
+2025-05-03 17:22:55.312 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:22:55.357 [INFO]: db connected.
+2025-05-03 17:23:12.239 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:23:12.270 [INFO]: db connected.
+2025-05-03 17:31:07.810 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:31:07.839 [INFO]: db connected.
+2025-05-03 17:31:20.188 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:31:20.220 [INFO]: db connected.
+2025-05-03 17:31:53.048 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:31:53.078 [INFO]: db connected.
+2025-05-03 17:31:54.804 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:31:54.833 [INFO]: db connected.
+2025-05-03 17:48:01.145 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:48:01.179 [INFO]: db connected.
+2025-05-03 17:48:15.415 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:48:15.450 [INFO]: db connected.
+2025-05-03 17:48:26.022 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:48:26.054 [INFO]: db connected.
+2025-05-03 17:48:38.576 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:48:38.602 [INFO]: db connected.
+2025-05-03 17:48:42.603 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:48:42.630 [INFO]: db connected.
+2025-05-03 17:49:06.673 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:49:06.709 [INFO]: db connected.
+2025-05-03 17:49:19.673 [INFO]: Server Running at http://localhost:8000
+2025-05-03 17:49:19.701 [INFO]: db connected.
+2025-05-05 09:14:08.699 [INFO]: Server Running at http://localhost:8000
+2025-05-05 09:14:08.734 [INFO]: db connected.
+2025-05-05 09:14:40.612 [INFO]: Server Running at http://localhost:8000
+2025-05-05 09:14:40.644 [INFO]: db connected.
+2025-05-05 09:15:06.762 [INFO]: Server Running at http://localhost:8000
+2025-05-05 09:15:06.795 [INFO]: db connected.
+2025-05-05 09:15:34.247 [INFO]: Server Running at http://localhost:8000
+2025-05-05 09:15:34.279 [INFO]: db connected.
+2025-05-05 09:15:54.466 [INFO]: Server Running at http://localhost:8000
+2025-05-05 09:15:54.494 [INFO]: db connected.
+2025-05-05 09:15:56.818 [INFO]: Server Running at http://localhost:8000
+2025-05-05 09:15:56.850 [INFO]: db connected.
+2025-05-05 09:15:59.198 [INFO]: Server Running at http://localhost:8000
+2025-05-05 09:15:59.234 [INFO]: db connected.
+2025-05-05 09:17:53.832 [INFO]: [2025-05-05T03:47:53.831Z] Connecting MetaApi websocket client to the MetaApi server via https://mt-client-api-v1.london-a.agiliumtrade.ai shared server.
+2025-05-05 09:17:53.833 [INFO]: [2025-05-05T03:47:53.833Z] Connecting MetaApi websocket client to the MetaApi server via https://mt-client-api-v1.london-b.agiliumtrade.ai shared server.
+2025-05-05 09:17:55.047 [INFO]: [2025-05-05T03:47:55.047Z] london:0: MetaApi websocket client connected to the MetaApi server
+2025-05-05 09:17:55.053 [INFO]: [2025-05-05T03:47:55.053Z] london:1: MetaApi websocket client connected to the MetaApi server
+2025-05-05 09:17:55.767 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:17:55.783 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:17:59.384 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:17:59.404 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:18:06.002 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:18:06.005 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:18:18.594 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:18:18.634 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:18:43.177 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:18:43.225 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:19:31.795 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:19:31.805 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:21:08.394 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:21:08.537 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:22:54.005 [ERROR]: TimeoutError: Timed out waiting for MetaApi to synchronize to MetaTrader account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+    at RpcMetaApiConnection.waitSynchronized (D:\trade\node_modules\metaapi.cloud-sdk\dist\metaApi\rpcMetaApiConnection.js:102:19)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:555:9)
+    at process.processTimers (node:internal/timers:529:7)
+    at async MTService.connect (D:\trade\services\mtService.js:24:7)
+    at async AccountService.getAccountInfo (D:\trade\services\accountService.js:12:26)
+    at async Promise.all (index 0)
+    at async AccountService.getCompleteAccountData (D:\trade\services\accountService.js:89:48)
+    at async exports.getAccountData (D:\trade\controller\tradingview.controller.js:49:18)
+2025-05-05 09:22:54.006 [ERROR]: Error: Failed to connect to MT account: Timed out waiting for MetaApi to synchronize to MetaTrader account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+    at MTService.connect (D:\trade\services\mtService.js:32:13)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:555:9)
+    at process.processTimers (node:internal/timers:529:7)
+    at async AccountService.getAccountInfo (D:\trade\services\accountService.js:12:26)
+    at async Promise.all (index 0)
+    at async AccountService.getCompleteAccountData (D:\trade\services\accountService.js:89:48)
+    at async exports.getAccountData (D:\trade\controller\tradingview.controller.js:49:18)
+2025-05-05 09:22:54.007 [ERROR]: Error: Failed to connect to MT account: Timed out waiting for MetaApi to synchronize to MetaTrader account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+    at MTService.connect (D:\trade\services\mtService.js:32:13)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:555:9)
+    at process.processTimers (node:internal/timers:529:7)
+    at async AccountService.getAccountInfo (D:\trade\services\accountService.js:12:26)
+    at async Promise.all (index 0)
+    at async AccountService.getCompleteAccountData (D:\trade\services\accountService.js:89:48)
+    at async exports.getAccountData (D:\trade\controller\tradingview.controller.js:49:18)
+2025-05-05 09:22:54.009 [ERROR]: TimeoutError: Timed out waiting for MetaApi to synchronize to MetaTrader account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+    at RpcMetaApiConnection.waitSynchronized (D:\trade\node_modules\metaapi.cloud-sdk\dist\metaApi\rpcMetaApiConnection.js:102:19)
+    at async MTService.connect (D:\trade\services\mtService.js:24:7)
+    at async AccountService.getOrders (D:\trade\services\accountService.js:63:26)
+    at async Promise.all (index 2)
+2025-05-05 09:22:54.010 [ERROR]: Error: Failed to connect to MT account: Timed out waiting for MetaApi to synchronize to MetaTrader account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+    at MTService.connect (D:\trade\services\mtService.js:32:13)
+    at async AccountService.getOrders (D:\trade\services\accountService.js:63:26)
+    at async Promise.all (index 2)
+2025-05-05 09:22:54.074 [ERROR]: TimeoutError: Timed out waiting for MetaApi to synchronize to MetaTrader account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+    at RpcMetaApiConnection.waitSynchronized (D:\trade\node_modules\metaapi.cloud-sdk\dist\metaApi\rpcMetaApiConnection.js:102:19)
+    at async MTService.connect (D:\trade\services\mtService.js:24:7)
+    at async AccountService.getPositions (D:\trade\services\accountService.js:36:26)
+    at async Promise.all (index 1)
+2025-05-05 09:22:54.075 [ERROR]: Error: Failed to connect to MT account: Timed out waiting for MetaApi to synchronize to MetaTrader account 81f9214a-ea15-4db5-89f3-5e8a26522f5d
+    at MTService.connect (D:\trade\services\mtService.js:32:13)
+    at async AccountService.getPositions (D:\trade\services\accountService.js:36:26)
+    at async Promise.all (index 1)
+2025-05-05 09:24:20.976 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:24:21.132 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:29:21.615 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:29:21.731 [ERROR]: ValidationError: It seems like you are trying to subscribe to an account, however you have no accounts deployed yet. Please deploy an account first
+    at MetaApiWebsocketClient._convertError (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:1435:20)
+    at Socket.<anonymous> (D:\trade\node_modules\metaapi.cloud-sdk\dist\clients\metaApi\metaApiWebsocket.client.js:366:40)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Socket.onevent (D:\trade\node_modules\socket.io-client\lib\socket.js:278:10)
+    at Socket.onpacket (D:\trade\node_modules\socket.io-client\lib\socket.js:236:12)
+    at Manager.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+    at Manager.ondecoded (D:\trade\node_modules\socket.io-client\lib\manager.js:349:8)
+    at Decoder.<anonymous> (D:\trade\node_modules\component-bind\index.js:21:15)
+    at Emitter.emit (D:\trade\node_modules\component-emitter\index.js:145:20)
+2025-05-05 09:51:09.233 [INFO]: Server Running at http://localhost:8000
+2025-05-05 09:51:09.275 [INFO]: db connected.
+2025-05-06 10:55:36.140 [INFO]: Server Running at http://localhost:8000
+2025-05-06 10:55:36.177 [INFO]: db connected.
+2025-05-06 12:02:29.585 [INFO]: Server Running at http://localhost:8000
+2025-05-06 12:02:29.612 [INFO]: db connected.
+2025-05-08 10:43:56.028 [INFO]: Server Running at http://localhost:8000
+2025-05-08 10:43:56.052 [INFO]: db connected.
+2025-05-08 10:44:08.160 [INFO]: Server Running at http://localhost:8000
+2025-05-08 10:44:08.189 [INFO]: db connected.
