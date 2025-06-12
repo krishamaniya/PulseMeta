@@ -46,8 +46,8 @@ app.use("/api/server", require("./routes/server.routes.js"));
 // Start server
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Socket.IO running on ws://localhost:${PORT}`);
+  console.log(`Server running on ${PORT}`);
+  console.log(`Socket.IO running on ${PORT}`);
 });
 
 // app.use("/api/webhook",require("./routes/webhook.routes.js"));
