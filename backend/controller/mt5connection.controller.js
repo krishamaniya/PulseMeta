@@ -546,7 +546,7 @@ async function syncOpenedOrders(connectId) {
 
 // Main order handling function
 const handleMT5Order = async (req, res) => {
-  const { connectId } = req.body;
+  const { connectId } = req.params;
   const { symbol, operation } = req.body;
 
   // Validate required fields
@@ -573,7 +573,7 @@ const handleMT5Order = async (req, res) => {
       }
 
       const response = await axios.get("https://mt5.mtapi.io/OrderSend", {
-        body: {  connectId, symbol, operation: op, volume },
+        params: { id: connectId, symbol, operation: op, volume },
       });
 
       const result = response.data;
@@ -644,7 +644,7 @@ const handleMT5Order = async (req, res) => {
 
           // Only proceed if position exists
           const response = await axios.get("https://mt5.mtapi.io/OrderClose", {
-            body: {
+            params: {
               id: connectId,
               ticket: trade.ticket,
               symbol: trade.symbol,
