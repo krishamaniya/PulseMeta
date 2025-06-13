@@ -34,7 +34,7 @@ router.get("/getAllMyMT5Summaries",authenticateUser, getAllMyMT5Summaries);
 
 router.post("/sendMT5Order/:connectId",authenticateUser, sendMT5Order);
 
-router.post("/handleMT5Order/:connectId",authenticateUser, handleMT5Order);
+router.post("/handleMT5Order", handleMT5Order);
 
 router.post("/modifyMT5Order/:connectId",authenticateUser, modifyMT5Order);
 

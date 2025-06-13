@@ -4,6 +4,7 @@ const MT5Connection = require("../model/mt5connection");
 const MT5Profile = require("../model/accountsummary");
 const OrderHistory = require('../model/tradehistory'); 
 const WebSocket = require('ws');
+const cron = require('node-cron');
   
 let activeSockets = {};
 // let lastProfits = {};
@@ -371,8 +372,8 @@ const sendMT5Order = async (req, res) => {
 };
 
 const closeMT5Trade = async (req, res) => {
-  const { connectId } = req.params;
-  const { symbol, operation } = req.body; // Changed to symbol and operation
+  const { connectId } = req.body;
+  const { symbol, operation } = req.body;
 
   if (!connectId) {
     return res.status(400).json({ message: "connectId is required." });
@@ -407,22 +408,43 @@ const closeMT5Trade = async (req, res) => {
     }
 
     const results = [];
+    const tradesToUpdate = [];
 
     for (const trade of matchingTrades) {
       try {
-        const response = await axios.get("https://mt5.mtapi.io/OrderClose", {
+        // First check if the position still exists
+        const checkResponse = await axios.get("https://mt5.mtapi.io/PositionGet", {
           params: {
             id: connectId,
             ticket: trade.ticket,
           },
         });
 
-        const result = response.data;
+        // If position doesn't exist (404), mark as already closed
+        if (checkResponse.status === 404) {
+          results.push({
+            ticket: trade.ticket,
+            symbol: trade.symbol,
+            operation: trade.operation,
+            status: "already_closed",
+            result: { message: "Position was already closed" }
+          });
+          tradesToUpdate.push(trade.ticket);
+          continue;
+        }
 
-        const isClosed =
-          result?.closePrice > 0 &&
-          result?.dealInternalOut?.direction === "Out" &&
-          result?.dealInternalOut?.volume > 0;
+        // If position exists, attempt to close it
+        const closeResponse = await axios.get("https://mt5.mtapi.io/OrderClose", {
+          params: {
+            id: connectId,
+            ticket: trade.ticket,
+          },
+        });
+
+        const result = closeResponse.data;
+        const isClosed = result?.closePrice > 0 &&
+                        result?.dealInternalOut?.direction === "Out" &&
+                        result?.dealInternalOut?.volume > 0;
 
         results.push({
           ticket: trade.ticket,
@@ -431,21 +453,45 @@ const closeMT5Trade = async (req, res) => {
           status: isClosed ? "closed" : "failed",
           result,
         });
+
+        if (isClosed) {
+          tradesToUpdate.push(trade.ticket);
+        }
       } catch (err) {
-        results.push({
-          ticket: trade.ticket,
-          symbol: trade.symbol,
-          operation: trade.operation,
-          status: "error",
-          error: err.message,
-        });
+        if (err.response?.status === 404) {
+          results.push({
+            ticket: trade.ticket,
+            symbol: trade.symbol,
+            operation: trade.operation,
+            status: "already_closed",
+            error: "Position was already closed",
+          });
+          tradesToUpdate.push(trade.ticket);
+        } else {
+          results.push({
+            ticket: trade.ticket,
+            symbol: trade.symbol,
+            operation: trade.operation,
+            status: "error",
+            error: err.message,
+          });
+        }
       }
+    }
+
+    // Update database to remove closed trades
+    if (tradesToUpdate.length > 0) {
+      await MT5Profile.updateOne(
+        { connectId },
+        { $pull: { openedOrders: { ticket: { $in: tradesToUpdate } } } }
+      );
     }
 
     return res.status(200).json({
       message: "Trade close attempts completed.",
       totalTrades: matchingTrades.length,
       results,
+      updatedDatabase: tradesToUpdate.length > 0,
     });
   } catch (error) {
     console.error("Error closing trades:", error.message);
@@ -456,10 +502,54 @@ const closeMT5Trade = async (req, res) => {
   }
 };
 
+
+// Regular sync job (run every 5 minutes)
+cron.schedule('*/5 * * * *', async () => {
+  console.log('Running periodic MT5 positions sync...');
+  const profiles = await MT5Profile.find({});
+  for (const profile of profiles) {
+    await syncOpenedOrders(profile.connectId);
+  }
+});
+
+// Helper function to sync local DB with MT5 positions
+async function syncOpenedOrders(connectId) {
+  try {
+    const response = await axios.get("https://mt5.mtapi.io/PositionsGet", {
+      params: { id: connectId }
+    });
+    
+    const currentPositions = response.data.positions || [];
+    
+    await MT5Profile.updateOne(
+      { connectId },
+      { 
+        openedOrders: currentPositions.map(pos => ({
+          ticket: pos.PositionId || pos.ticket,
+          symbol: pos.Symbol || pos.symbol,
+          orderType: pos.Type || pos.type,
+          volume: pos.Volume || pos.volume,
+          openPrice: pos.PriceOpen || pos.openPrice,
+          openTime: pos.Time || pos.openTime,
+          profit: pos.Profit || pos.profit,
+          swap: pos.Swap || pos.swap
+        }))
+      }
+    );
+    
+    return true;
+  } catch (error) {
+    console.error(`Sync failed for connectId ${connectId}:`, error.message);
+    return false;
+  }
+}
+
+// Main order handling function
 const handleMT5Order = async (req, res) => {
-  const { connectId } = req.params;
+  const { connectId } = req.body;
   const { symbol, operation } = req.body;
 
+  // Validate required fields
   if (!connectId || !symbol || !operation) {
     return res.status(400).json({
       message: "connectId, symbol, and operation are required.",
@@ -468,40 +558,48 @@ const handleMT5Order = async (req, res) => {
 
   try {
     const op = operation.toLowerCase();
-
     
+    // Sync positions before any operation
+    await syncOpenedOrders(connectId);
+
+    // Handle buy/sell operations
     if (op === "buy" || op === "sell") {
       const { volume } = req.body;
 
       if (!volume) {
-        return res.status(400).json({ message: "volume is required for placing an order." });
+        return res.status(400).json({ 
+          message: "volume is required for placing an order." 
+        });
       }
 
       const response = await axios.get("https://mt5.mtapi.io/OrderSend", {
-        params: { id: connectId, symbol, operation: op, volume },
+        body: {  connectId, symbol, operation: op, volume },
       });
 
       const result = response.data;
 
       if (result?.ticket) {
+        // Update local DB after successful order
+        await syncOpenedOrders(connectId);
         return res.status(200).json({
           message: "Trade order sent successfully.",
           order: result,
         });
-      } else {
-        return res.status(400).json({
-          message: "Failed to send trade order.",
-          result,
-        });
-      }
+      } 
+      return res.status(400).json({
+        message: "Failed to send trade order.",
+        result,
+      });
     }
 
-    
+    // Handle close operations
     if (op === "buyclose" || op === "sellclose") {
       const profile = await MT5Profile.findOne({ connectId });
 
       if (!profile) {
-        return res.status(404).json({ message: "No profile found for this connectId." });
+        return res.status(404).json({ 
+          message: "No profile found for this connectId." 
+        });
       }
 
       if (!Array.isArray(profile.openedOrders) || profile.openedOrders.length === 0) {
@@ -511,7 +609,7 @@ const handleMT5Order = async (req, res) => {
         });
       }
 
-      const tradeTypeToClose = op.replace("close", ""); 
+      const tradeTypeToClose = op.replace("close", "");
       const matchingTrades = profile.openedOrders.filter(
         order =>
           order.symbol === symbol &&
@@ -528,33 +626,37 @@ const handleMT5Order = async (req, res) => {
 
       for (const trade of matchingTrades) {
         try {
-          if (!trade.volume || isNaN(trade.volume)) {
+          // Verify position exists before attempting to close
+          const positionCheck = await axios.get("https://mt5.mtapi.io/PositionGet", {
+            params: { id: connectId, ticket: trade.ticket }
+          });
+
+          if (!positionCheck.data || positionCheck.data.error) {
             results.push({
               ticket: trade.ticket,
               symbol: trade.symbol,
               orderType: trade.orderType,
-              status: "error",
-              error: "Invalid or missing volume for trade",
+              status: "already_closed",
+              message: "Position not found or already closed"
             });
             continue;
           }
 
+          // Only proceed if position exists
           const response = await axios.get("https://mt5.mtapi.io/OrderClose", {
-            params: {
+            body: {
               id: connectId,
               ticket: trade.ticket,
-              symbol: trade.symbol, 
-              volume: trade.volume, 
-              type: trade.orderType, 
+              symbol: trade.symbol,
+              volume: trade.volume,
+              type: trade.orderType,
             },
           });
 
           const result = response.data;
-
-          const isClosed =
-            result?.closePrice > 0 &&
-            result?.dealInternalOut?.direction === "Out" &&
-            result?.dealInternalOut?.volume > 0;
+          const isClosed = result?.closePrice > 0 &&
+                         result?.dealInternalOut?.direction === "Out" &&
+                         result?.dealInternalOut?.volume > 0;
 
           results.push({
             ticket: trade.ticket,
@@ -571,14 +673,26 @@ const handleMT5Order = async (req, res) => {
             orderType: trade.orderType,
             volume: trade.volume,
             status: "error",
-            error: err.message,
+            error: err.response?.data?.message || err.message,
           });
         }
       }
 
+      // Update local DB after closing operations
+      await syncOpenedOrders(connectId);
+
+      const closedCount = results.filter(r => r.status === 'closed').length;
+      const alreadyClosedCount = results.filter(r => r.status === 'already_closed').length;
+      const failedCount = results.filter(r => r.status === 'failed').length;
+
       return res.status(200).json({
-        message: "Trade close attempts completed.",
+        message: closedCount > 0 
+          ? `${closedCount} trade(s) successfully closed` 
+          : "No trades could be closed",
         totalTrades: matchingTrades.length,
+        closedCount,
+        alreadyClosedCount,
+        failedCount,
         results,
       });
     }
@@ -590,10 +704,149 @@ const handleMT5Order = async (req, res) => {
     console.error("Error processing order:", error.message);
     return res.status(500).json({
       message: "Internal server error.",
-      error: error.message,
+      error: error.response?.data?.message || error.message,
     });
   }
 };
+
+// const handleMT5Order = async (req, res) => {
+//   const { connectId } = req.params;
+//   const { symbol, operation } = req.body;
+
+//   if (!connectId || !symbol || !operation) {
+//     return res.status(400).json({
+//       message: "connectId, symbol, and operation are required.",
+//     });
+//   }
+
+//   try {
+//     const op = operation.toLowerCase();
+
+    
+//     if (op === "buy" || op === "sell") {
+//       const { volume } = req.body;
+
+//       if (!volume) {
+//         return res.status(400).json({ message: "volume is required for placing an order." });
+//       }
+
+//       const response = await axios.get("https://mt5.mtapi.io/OrderSend", {
+//         params: { id: connectId, symbol, operation: op, volume },
+//       });
+
+//       const result = response.data;
+
+//       if (result?.ticket) {
+//         return res.status(200).json({
+//           message: "Trade order sent successfully.",
+//           order: result,
+//         });
+//       } else {
+//         return res.status(400).json({
+//           message: "Failed to send trade order.",
+//           result,
+//         });
+//       }
+//     }
+
+    
+//     if (op === "buyclose" || op === "sellclose") {
+//       const profile = await MT5Profile.findOne({ connectId });
+
+//       if (!profile) {
+//         return res.status(404).json({ message: "No profile found for this connectId." });
+//       }
+
+//       if (!Array.isArray(profile.openedOrders) || profile.openedOrders.length === 0) {
+//         return res.status(404).json({
+//           message: "No opened orders found for this connectId.",
+//           openedOrders: [],
+//         });
+//       }
+
+//       const tradeTypeToClose = op.replace("close", ""); 
+//       const matchingTrades = profile.openedOrders.filter(
+//         order =>
+//           order.symbol === symbol &&
+//           String(order.orderType).toLowerCase() === tradeTypeToClose
+//       );
+
+//       if (matchingTrades.length === 0) {
+//         return res.status(404).json({
+//           message: "No matching trades found with this symbol and operation.",
+//         });
+//       }
+
+//       const results = [];
+
+//       for (const trade of matchingTrades) {
+//         try {
+//           if (!trade.volume || isNaN(trade.volume)) {
+//             results.push({
+//               ticket: trade.ticket,
+//               symbol: trade.symbol,
+//               orderType: trade.orderType,
+//               status: "error",
+//               error: "Invalid or missing volume for trade",
+//             });
+//             continue;
+//           }
+
+//           const response = await axios.get("https://mt5.mtapi.io/OrderClose", {
+//             params: {
+//               id: connectId,
+//               ticket: trade.ticket,
+//               symbol: trade.symbol, 
+//               volume: trade.volume, 
+//               type: trade.orderType, 
+//             },
+//           });
+
+//           const result = response.data;
+
+//           const isClosed =
+//             result?.closePrice > 0 &&
+//             result?.dealInternalOut?.direction === "Out" &&
+//             result?.dealInternalOut?.volume > 0;
+
+//           results.push({
+//             ticket: trade.ticket,
+//             symbol: trade.symbol,
+//             orderType: trade.orderType,
+//             volume: trade.volume,
+//             status: isClosed ? "closed" : "failed",
+//             result,
+//           });
+//         } catch (err) {
+//           results.push({
+//             ticket: trade.ticket,
+//             symbol: trade.symbol,
+//             orderType: trade.orderType,
+//             volume: trade.volume,
+//             status: "error",
+//             error: err.message,
+//           });
+//         }
+//       }
+
+//       return res.status(200).json({
+//         message: "Trade close attempts completed.",
+//         totalTrades: matchingTrades.length,
+//         results,
+//       });
+//     }
+
+//     return res.status(400).json({
+//       message: "Invalid operation. Use 'buy', 'sell', 'buyclose', or 'sellclose'.",
+//     });
+//   } catch (error) {
+//     console.error("Error processing order:", error.message);
+//     return res.status(500).json({
+//       message: "Internal server error.",
+//       error: error.message,
+//     });
+//   }
+// };
 
 const getOpenTrades = async (req, res) => {
   const { connectId } = req.params;
