@@ -24,7 +24,7 @@ const token = localStorage.getItem("token");
         return;
       }
 
-      const response = await axios.get("http://localhost:8000/api/admin/getAdminProfile", {
+      const response = await axios.get("http://82.25.109.28:8000/api/admin/getAdminProfile", {
         headers: { Authorization: `${token}` },
       });
 
@@ -75,7 +75,7 @@ const token = localStorage.getItem("token");
       console.log("Sending Profile Update Request...");
   
       const response = await axios.patch(
-        "http://localhost:8000/api/admin/updateAdminProfile",
+        "http://82.25.109.28:8000/api/admin/updateAdminProfile",
         formData,
         {
           headers: {
@@ -91,7 +91,7 @@ const token = localStorage.getItem("token");
         showMessage("profile", "Profile updated successfully!");
   
         if (response.data.client?.profilePhoto) {
-          const updatedPhoto = `http://localhost:8000${response.data.client.profilePhoto}`;
+          const updatedPhoto = `http://82.25.109.28:8000${response.data.client.profilePhoto}`;
         
           // Update State Immediately
           setHeaderProfilePhoto(updatedPhoto);
@@ -131,7 +131,7 @@ const token = localStorage.getItem("token");
 
     try {
       const response = await axios.patch(
-        "http://localhost:8000/api/admin/updateAdminProfile",
+        "http://82.25.109.28:8000/api/admin/updateAdminProfile",
         { currentPassword, newPassword },
         { headers: { Authorization: token } }
       );

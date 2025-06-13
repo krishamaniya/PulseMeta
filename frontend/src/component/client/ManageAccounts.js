@@ -78,7 +78,7 @@ const [orderForm, setOrderForm] = useState({
    const startWebSocketConnection = async (connectId) => {
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/connect/startwebsocket',
+        'http://82.25.109.28:8000/api/connect/startwebsocket',
         { connectId },
         {
           headers: {
@@ -102,7 +102,7 @@ const [orderForm, setOrderForm] = useState({
     }
 
     const eventSource = new EventSource(
-      `http://localhost:8000/api/connect/getMT5liveAccountSummary/${connectId}`
+      `http://82.25.109.28:8000/api/connect/getMT5liveAccountSummary/${connectId}`
     );
 
     eventSources.current[connectId] = eventSource;
@@ -134,7 +134,7 @@ const [orderForm, setOrderForm] = useState({
   //   }
 
   //   const eventSource = new EventSource(
-  //     `http://localhost:8000/api/connect/getMT5liveAccountSummary/${connectId}`,
+  //     `http://82.25.109.28:8000/api/connect/getMT5liveAccountSummary/${connectId}`,
   //     // {
   //     //   headers: {
   //     //     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -168,7 +168,7 @@ const [orderForm, setOrderForm] = useState({
   // Connect to backend via Socket.IO once
 useEffect(() => {
   if (!socketRef.current) {
-    const newSocket = io('http://localhost:8000', {
+    const newSocket = io('http://82.25.109.28:8000', {
       transports: ['websocket'],
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
@@ -245,7 +245,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchServers = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/server/servers/exness");
+        const response = await axios.get("http://82.25.109.28:8000/api/server/servers/exness");
         const allServers = response.data.data.flatMap((item) => item.servers || []);
         setServerList(allServers);
       } catch (err) {
@@ -311,7 +311,7 @@ useEffect(() => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/connect/connectmt5', payload, {
+      const response = await axios.post('http://82.25.109.28:8000/api/connect/connectmt5', payload, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           'Content-Type': 'application/json'
@@ -337,7 +337,7 @@ useEffect(() => {
   const fetchAccountSummary = async (connectId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/connect/getMT5AccountSummary/${connectId}`,
+        `http://82.25.109.28:8000/api/connect/getMT5AccountSummary/${connectId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -384,7 +384,7 @@ const handleSaveAccount = async () => {
 
     // Call the save API
     const saveResponse = await axios.post(
-      'http://localhost:8000/api/connect/saveMT5Account',
+      'http://82.25.109.28:8000/api/connect/saveMT5Account',
       savePayload,
       {
         headers: {
@@ -450,7 +450,7 @@ const fetchAllAccounts = async () => {
   setLoading(true);
   try {   
     const response = await axios.get(
-      "http://localhost:8000/api/connect/getAllSavedMT5AccountSummaries",
+      "http://82.25.109.28:8000/api/connect/getAllSavedMT5AccountSummaries",
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -498,7 +498,7 @@ const fetchAllAccounts = async () => {
 //       setLoading(true);
 //       try {
 //       const response = await axios.get(
-//         "http://localhost:8000/api/connect/getAllSavedMT5AccountSummaries",
+//         "http://82.25.109.28:8000/api/connect/getAllSavedMT5AccountSummaries",
 //         {
 //           headers: {
 //             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -580,7 +580,7 @@ const fetchAllAccounts = async () => {
 //     setError(null);
 //     try {
 //       const response = await axios.get(
-//         "http://localhost:8000/api/connect/getAllSavedMT5AccountSummaries",
+//         "http://82.25.109.28:8000/api/connect/getAllSavedMT5AccountSummaries",
 //         {
 //           headers: {
 //             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -627,7 +627,7 @@ const fetchAllAccounts = async () => {
 //     setError(null);
 //     try {
 //       const response = await axios.get(
-//         "http://localhost:8000/api/connect/getAllSavedMT5AccountSummaries",
+//         "http://82.25.109.28:8000/api/connect/getAllSavedMT5AccountSummaries",
 //         {
 //           headers: {
 //             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -701,7 +701,7 @@ const handleDeleteAccounts = async () => {
     const deleteResults = await Promise.allSettled(
       accountsToDelete.map(connectId => 
         axios.delete(
-          `http://localhost:8000/api/connect/deleteMT5Connection/${connectId}`,
+          `http://82.25.109.28:8000/api/connect/deleteMT5Connection/${connectId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -757,7 +757,7 @@ const handleDeleteAccounts = async () => {
     // Re-fetch accounts to ensure UI is in sync
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/connect/getAllSavedMT5AccountSummaries",
+        "http://82.25.109.28:8000/api/connect/getAllSavedMT5AccountSummaries",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -791,7 +791,7 @@ const handleDeleteAccounts = async () => {
 const fetchOpenTrades = async (connectId) => {
   try {
     const response = await axios.get(
-      `http://localhost:8000/api/connect/getOpenTrades/${connectId}`,
+      `http://82.25.109.28:8000/api/connect/getOpenTrades/${connectId}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -891,7 +891,7 @@ const fetchOpenTrades = async (connectId) => {
             trades.map(async trade => {
               try {
                 const response = await axios.post(
-                  `http://localhost:8000/api/connect/closeMT5Trade/${connectId}`,
+                  `http://82.25.109.28:8000/api/connect/closeMT5Trade/${connectId}`,
                   { 
                     symbol: closeTradeForm.symbol,
                     operation: closeTradeForm.operation
@@ -982,7 +982,7 @@ const fetchOpenTrades = async (connectId) => {
 //       accountsToClose.map(async (connectId) => {
 //         try {
 //           const response = await axios.post(
-//             `http://localhost:8000/api/connect/closeMT5Trade/${connectId}`,
+//             `http://82.25.109.28:8000/api/connect/closeMT5Trade/${connectId}`,
 //             {}, // Empty body since we're not sending symbol
 //             {
 //               headers: {
@@ -1039,7 +1039,7 @@ const fetchSymbols = async (connectId) => {
   setLoadingSymbols(true);
   try {
     const response = await axios.post(
-      `http://localhost:8000/api/connect/getSymbols/${connectId}`,
+      `http://82.25.109.28:8000/api/connect/getSymbols/${connectId}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -1084,7 +1084,7 @@ const handleSendOrder = async () => {
 
   try {
     const response = await axios.post(
-      `http://localhost:8000/api/connect/sendMT5Order/${currentAccount.connectId}`, // Use currentAccount.connectId
+      `http://82.25.109.28:8000/api/connect/sendMT5Order/${currentAccount.connectId}`, // Use currentAccount.connectId
       {
         symbol: orderForm.symbol,
         operation: orderForm.operation,
@@ -1876,7 +1876,7 @@ export default ManageAccounts;
 //   useEffect(() => {
 //     const fetchServers = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:8000/api/server/servers/exness");
+//         const response = await axios.get("http://82.25.109.28:8000/api/server/servers/exness");
 //         // Flatten nested arrays if `servers` is array in each object
 //         const allServers = response.data.data.flatMap((item) => item.servers || []);
 //         setServerList(allServers);

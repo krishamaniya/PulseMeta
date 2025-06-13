@@ -38,7 +38,7 @@ const History = () => {
         const userId = decoded.id;
         
         const response = await axios.get(
-          `http://localhost:8000/api/connect/getAllConnectedId/${userId}`,
+          `http://82.25.109.28:8000/api/connect/getAllConnectedId/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -83,7 +83,7 @@ const History = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:8000/api/connect/history",
+        "http://82.25.109.28:8000/api/connect/history",
         {
           accountNumber: selectedAccount,
           fromDate,
@@ -449,7 +449,7 @@ export default History;
 //   useEffect(() => {
 //     const fetchAccounts = async () => {
 //       try {
-//         const res = await axios.get("http://localhost:8000/api/connect/getAllConnectedId");
+//         const res = await axios.get("http://82.25.109.28:8000/api/connect/getAllConnectedId");
 //         if (res.data.success) {
 //           setAccounts(res.data.data);
 //         } else {
@@ -472,7 +472,7 @@ export default History;
 //     setError(null);
 
 //     try {
-//       const res = await axios.post("http://localhost:8000/api/connect/history", {
+//       const res = await axios.post("http://82.25.109.28:8000/api/connect/history", {
 //         accountNumber: selectedAccount,
 //         fromDate,
 //         toDate,

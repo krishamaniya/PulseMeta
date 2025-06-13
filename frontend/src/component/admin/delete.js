@@ -16,7 +16,7 @@ const DeletedClients = () => {
   const fetchDeletedClients = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:8000/api/client/getDeletedClients", {
+      const response = await axios.get("http://82.25.109.28:8000/api/client/getDeletedClients", {
         headers: { Authorization: `${token}` },
       });
       setDeletedClients(response.data.clients);
@@ -31,7 +31,7 @@ const DeletedClients = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "http://localhost:8000/api/client/updateClientDeleteStatus",
+        "http://82.25.109.28:8000/api/client/updateClientDeleteStatus",
         { id, isDelete: false }, 
         { headers: { Authorization: `${token}` } }
       );

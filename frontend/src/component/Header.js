@@ -14,7 +14,7 @@
 //   const notificationRef = useRef(null);
 //   const profileRef = useRef(null);
 
-//   const BaseUrl = "http://localhost:8000/api";
+//   const BaseUrl = "http://82.25.109.28:8000/api";
 
 //   const getUser = async () => {
 //     try {
@@ -189,7 +189,7 @@ const Header = ({ isSidebarExpanded, toggleSidebar }) => {
   const notificationRef = useRef(null);
   const profileRef = useRef(null);
 
-  const BaseUrl = "http://localhost:8000/api";
+  const BaseUrl = "http://82.25.109.28:8000/api";
 
   const getUser = useCallback(async () => { 
     try {
@@ -214,7 +214,7 @@ const Header = ({ isSidebarExpanded, toggleSidebar }) => {
 
         // Update Profile Photo in Local Storage
         if (response.data && response.data.data.profilePhoto) {
-          const updatedPhoto = `http://localhost:8000${response.data.data.profilePhoto}`;
+          const updatedPhoto = `http://82.25.109.28:8000${response.data.data.profilePhoto}`;
 
           //Update profile photo for **both admin & client**
           localStorage.setItem("profilePhoto", updatedPhoto);
@@ -352,7 +352,7 @@ const Header = ({ isSidebarExpanded, toggleSidebar }) => {
               <img
                   src={
                     user && user.profilePhoto
-                    ? user.profilePhoto.startsWith("http")?user.profilePhoto:`http://localhost:8000${user.profilePhoto}`: "https://via.placeholder.com/150"
+                    ? user.profilePhoto.startsWith("http")?user.profilePhoto:`http://82.25.109.28:8000${user.profilePhoto}`: "https://via.placeholder.com/150"
                   }
                 alt="User"
                 className="w-full h-full object-cover"

@@ -22,7 +22,7 @@ const Home = () => {
         return;
       }
 
-      const response = await axios.get("http://localhost:8000/api/client/getAllClients", {
+      const response = await axios.get("http://82.25.109.28:8000/api/client/getAllClients", {
         headers: {
           Authorization: `${token}`,
         },
@@ -41,7 +41,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "http://localhost:8000/api/client/updateClientStatus",
+        "http://82.25.109.28:8000/api/client/updateClientStatus",
         { id, isActive: !currentStatus },
         {
           headers: {
@@ -66,7 +66,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "http://localhost:8000/api/client/updateClientDeleteStatus",
+        "http://82.25.109.28:8000/api/client/updateClientDeleteStatus",
         { id, isDelete: true },
         {
           headers: {

@@ -4,7 +4,7 @@
 // import { ToastContainer, toast } from "react-toastify";
 // import axios from "axios";
 
-// const BaseUrl = "http://localhost:8000/api"; // Update if needed
+// const BaseUrl = "http://82.25.109.28:8000/api"; // Update if needed
 
 // const Login = () => {
 //   const [username, setUsername] = useState("");
@@ -115,7 +115,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import axios from "axios";
 
-const BaseUrl = "http://localhost:8000/api"; 
+const BaseUrl = "http://82.25.109.28:8000/api"; 
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -282,7 +282,7 @@ export default Login;
 // import { ToastContainer, toast } from "react-toastify";
 // import axios from "axios";
 
-// const BaseUrl = "http://localhost:8000/api"; // Update if needed
+// const BaseUrl = "http://82.25.109.28:8000/api"; // Update if needed
 
 // const Login = () => {
 //   const [username, setUsername] = useState("");

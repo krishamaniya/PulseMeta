@@ -3,7 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const BaseUrl = "http://localhost:8000/api";
+const BaseUrl = "http://82.25.109.28:8000/api";
 
 const ResetPassword = () => {
   const navigate = useNavigate();

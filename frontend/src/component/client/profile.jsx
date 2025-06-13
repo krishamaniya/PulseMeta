@@ -22,7 +22,7 @@
 //           return;
 //         }
 
-//         const response = await axios.get("http://localhost:8000/api/client/getClientProfile", {
+//         const response = await axios.get("http://82.25.109.28:8000/api/client/getClientProfile", {
 //           headers: { Authorization: token },
 //         });
 
@@ -73,7 +73,7 @@
 //       formData.append("profilePhoto", profileImage);
 //     }
 
-//     const response = await axios.patch("http://localhost:8000/api/client/updateClientProfile", formData, {
+//     const response = await axios.patch("http://82.25.109.28:8000/api/client/updateClientProfile", formData, {
 //       headers: {
 //         Authorization: token,
 //         "Content-Type": "multipart/form-data",
@@ -120,7 +120,7 @@
 //     }
 
 //     const response = await axios.patch(
-//       "http://localhost:8000/api/client/updateClientProfile",
+//       "http://82.25.109.28:8000/api/client/updateClientProfile",
 //       { currentPassword, newPassword },
 //       { headers: { Authorization: token } }
 //     );
@@ -247,7 +247,7 @@ const ProfileSettings = ({ setHeaderProfilePhoto  = () => {} }) =>{
           return;
         }
     
-        const response = await axios.get("http://localhost:8000/api/client/getClientProfile", {
+        const response = await axios.get("http://82.25.109.28:8000/api/client/getClientProfile", {
           headers: {
             authorization: `${token}`
           },
@@ -316,7 +316,7 @@ const ProfileSettings = ({ setHeaderProfilePhoto  = () => {} }) =>{
       console.log("Sending Profile Update Request...");
   
       const response = await axios.patch(
-        "http://localhost:8000/api/client/updateClientProfile",
+        "http://82.25.109.28:8000/api/client/updateClientProfile",
         formData,
         {
           headers: {
@@ -332,7 +332,7 @@ const ProfileSettings = ({ setHeaderProfilePhoto  = () => {} }) =>{
         showMessage("profile", "Profile updated successfully!");
   
         if (response.data.client?.profilePhoto) {
-          const updatedPhoto = `http://localhost:8000${response.data.client.profilePhoto}`;
+          const updatedPhoto = `http://82.25.109.28:8000${response.data.client.profilePhoto}`;
         
           // Update State Immediately
           setHeaderProfilePhoto(updatedPhoto);
@@ -370,7 +370,7 @@ const ProfileSettings = ({ setHeaderProfilePhoto  = () => {} }) =>{
       }
 
       const response = await axios.patch(
-        "http://localhost:8000/api/client/updateClientProfile",
+        "http://82.25.109.28:8000/api/client/updateClientProfile",
         { currentPassword, newPassword },
         { headers: { Authorization: token } }
       );
